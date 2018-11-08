@@ -3,6 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
+    public class SimpleGameManager : MonoBehaviour
+{
+    void Awake()
+    private bool quest1;
+    private bool quest2;
+    private bool quest3;
+    {
+        if (instance = null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+}
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private static SimpleGameManager instance = null;
+public static SimpleGameManager Instance
+{
+    get
+    {
+        if (SimpleGameManager.instance == null)
+        {
+            SimpleGameManager.instance = FindObjectOfType<SimpleGameManager>();
+            if (SimpleGameManager.instance == null)
+            {
+                GameObject go = new GameObject();
+                go.name = "SimpleGameManager";
+                SimpleGameManager.instance = go.Addcomponent<SimpleGameManager>();
+                DontDestroyOnLoad(go);
+            }
+        }
+        return SimpleGameManager.instance;
+
+  
+public void FinishQuest(string quest)
+{
+    {
+        if (quest == "quest1")
+        {
+            quest1 = true;
+        }
+    }
+}
 {
 
     public float speed;

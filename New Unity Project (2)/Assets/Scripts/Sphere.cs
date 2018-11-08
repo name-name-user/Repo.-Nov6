@@ -3,58 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-    public class SimpleGameManager : MonoBehaviour
-{
-    void Awake()
-    private bool quest1;
-    private bool quest2;
-    private bool quest3;
-    {
-        if (instance = null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-}
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    private static SimpleGameManager instance = null;
-public static SimpleGameManager Instance
-{
-    get
-    {
-        if (SimpleGameManager.instance == null)
-        {
-            SimpleGameManager.instance = FindObjectOfType<SimpleGameManager>();
-            if (SimpleGameManager.instance == null)
-            {
-                GameObject go = new GameObject();
-                go.name = "SimpleGameManager";
-                SimpleGameManager.instance = go.Addcomponent<SimpleGameManager>();
-                DontDestroyOnLoad(go);
-            }
-        }
-        return SimpleGameManager.instance;
-
   
-public void FinishQuest(string quest)
 {
+    // Create an SimpleGameManager variable
+    SimpleGameManager GM;
+
+    // On Awake, set the variable to our SimpleGameManager.Instance
+    // (Note the capital 'I')
+    void Awake()
     {
-        if (quest == "quest1")
-        {
-            quest1 = true;
-        }
+        GM = SimpleGameManager.Instance;
     }
-}
-{
-
     public float speed;
-    public Text countText;
-    public winText
+    public Text Quest1Text;
+    public string winText;
 
-    private Rigidbody rb;
+    private Rigidbody Rigidbody;
     private int count;
 
     private void Start()
@@ -77,21 +41,21 @@ public void FinishQuest(string quest)
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pick Up"))
+        if (other.gameObject.CompareTag("Pick Up1") || other.gameObject.CompareTag("Pick Up2") || other.gameObject.CompareTag("Pick Up3"))
         {
             other.gameObject.SetActive(false);
-            count = count + 1;
-            SetCountText();
+            GM.FinishQuest(other.gameObject.tag);
+            if (GM.AreQuestsFinished())
+            {
+                SetQuest1Text
+            }
         }
     }
 
-    void SetCountText()
+    void SetQuest1Text()
     {
-        countText.text = "count: " + count.ToString();
-        FindObjectOfType(count >= 12)
-            {
-            winText.text = "you win!"
-        }
+        Quest1Text.text = "count: " + GM.count.ToString();
+       
     }
 }
 

@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             GM.FinishQuest(other.gameObject.tag);
             if (GM.AreQuestsFinished())
-            {
+            { 
                 SetQuest1Text
             }
         }
